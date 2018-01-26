@@ -15,6 +15,7 @@ This GreaseMonkey user script watches Freelancer.com projects notifications and 
 * Change xoxp-46455851173-274113487095-303432453507-a481760d1818a38259bb572d0ec3cd2b to your Slack API Key
 * Change G8XCG0FK5 to your Slack channel Id
 * Change Freelancer Notifications Catcher to your preferred Slack bot username
+* Change [ "C# Programming", ".NET", "ASP.NET", ... ] to your array of skills. Please note that you should enter skills as they are presented by Freelancer.com
 
 <br/>
 
