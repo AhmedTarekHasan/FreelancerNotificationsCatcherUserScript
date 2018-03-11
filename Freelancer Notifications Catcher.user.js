@@ -19,36 +19,34 @@ var freelancerNotificationsWatcher = new FreelancerNotificationsWatcher(2000);
 var scrapper = new Scrapper();	
 var slacker = new Slacker("xoxp-46456854174-274114487095-403432453537-a491760d1899a38239bp572d0ec3cd3c", "G8XCG0FK5", "Freelancer Notifications Catcher");
 
-//var freelancerProjectEvaluator = new FreelancerProjectEvaluator["*"]);
 var freelancerProjectEvaluator = new FreelancerProjectEvaluator
 ([
-  "C# Programming",
-  ".NET",
-  "ASP.NET",
-  "MVC",
-  "Website Design",
-  "ASP",
-  "Javascript",
-  "SQL",
-  "PHP",
-  "Graphic Design",
-  "AJAX",
-  "Visual Basic",
-  "CSS",
-  "Angular.js",
-  "Microsoft Access",
-  "Software Testing",
-  "C Programming",
-  "XML",
-  "Windows Desktop",
-  "User Interface / IA",
-  "node.js",
-  "iPhone",
-  "WordPress",
-  "Silverlight",
-  "Visual Basic for Apps",
-  "LESS/Sass/SCSS",
-  "node.js"
+	"ASP",
+	"ASP.NET",
+	".NET",
+	"ADO.NET",
+	"C# Programming",
+	"Database Development",
+	"Database Programming",
+	"Typescript",
+	"ECMAScript",
+	"Grease Monkey",
+	"SQL",
+	"MVC",
+	"Microsoft SQL Server",
+	"jQuery / Prototype",
+	"Javascript",
+	"Angular.js",
+	"API",
+	"LINQ",
+	"node.js",
+	"NoSQL Couch &amp; Mongo",
+	"OAuth",
+	"Object Oriented Programming (OOP)",
+	"T-SQL (Transact Structures Query Language)",
+	"WPF",
+	"Windows Desktop",
+	"Silverlight"
 ]);
 
 
@@ -240,17 +238,20 @@ Slacker.prototype.slackIt = function(freelancerProject) {
             "title": "Skills",
             "value": freelancerProject.skills.join(', ').replace('#', 'Sharp').replace('+', 'Plus'),
             "short": false
-          },
-          {
-            "title": "Budget In USD",
-            "value": freelancerProject.budgetInUSD.replace('#', 'Sharp').replace('+', 'Plus'),
-            "short": false
           }
         ],
         "thumb_url": "http://example.com/path/to/thumb.png"
       }];
-
-      if (freelancerProject.budgetInLocalCurrency != '') {
+	  
+	  if (freelancerProject.budgetInUSD !== '') {
+        attachments[0].fields.push({
+          "title": "Budget In USD",
+          "value": freelancerProject.budgetInUSD.replace('#', 'Sharp').replace('+', 'Plus'),
+          "short": false
+        });
+      }
+	  
+      if (freelancerProject.budgetInLocalCurrency !== '') {
         attachments[0].fields.push({
           "title": "Budget In Local Currency",
           "value": freelancerProject.budgetInLocalCurrency.replace('#', 'Sharp').replace('+', 'Plus'),
@@ -314,9 +315,40 @@ FreelancerProjectEvaluator.prototype.evaluate = function(freelancerProject) {
             });
 
             if (existing && existing !== null && existing.length > 0) {
-              result = true;
-              break;
-            }
+				result = true;
+				break;
+            } else {
+				var inlineWords = [].concat(getWordsFromString(freelancerProject.title)).concat(getWordsFromString(freelancerProject.description));
+				
+				/*freelancerProject.title.split(" ").forEach(function(mixedWord){
+					mixedWord.split(",").forEach(function(word){
+						word = word.trim();
+						
+						if(word !== "" && word !== ",") {
+							inlineWords.push(word);
+						}
+					});
+				});
+				
+				freelancerProject.description.split(" ").forEach(function(mixedWord){
+					mixedWord.split(",").forEach(function(word){
+						word = word.trim();
+						
+						if(word !== "" && word !== ",") {
+							inlineWords.push(word);
+						}
+					});
+				});*/
+				
+				var existing = inlineWords.filter(function(inlineWord){
+				  return self.eligibleSkills[i].trim().toLowerCase() === inlineWord.trim().toLowerCase();
+				});
+
+				if (existing && existing !== null && existing.length > 0) {
+				  result = true;
+				  break;
+				}
+			}
           }
         }
       }
@@ -331,6 +363,32 @@ FreelancerProjectEvaluator.prototype.evaluate = function(freelancerProject) {
 
   return promise;
 };
+
+
+
+function getWordsFromString(str) {
+	var words = [];
+	
+	str.split(" ").forEach(function(commaSeparatedWords){
+		commaSeparatedWords.split(",").forEach(function(rightBracketSeparatedWord){
+			rightBracketSeparatedWord.split(")").forEach(function(leftBracketSeparatedWord){
+				leftBracketSeparatedWord.split("(").forEach(function(rightSquareBracketSeparatedWord){
+					rightSquareBracketSeparatedWord.split("[").forEach(function(leftSquareBracketSeparatedWord){
+						leftSquareBracketSeparatedWord.split("]").forEach(function(word){
+							word = word.trim();
+			
+							if(word & word !== null && word !== "") {
+								words.push(word);
+							}
+						});
+					});
+				});
+			});
+		});
+	});
+	
+	return words;
+}
 
 
 
@@ -354,13 +412,7 @@ Scrapper.prototype.scrap = function(html) {
       });
 
       var description = $(html).find('.toast-project-description').html().trim();
-      var budgetInUSD = $(html).find('.notification-project-price:eq(0)').contents().eq(0)[0].data.trim();
-      var budgetInLocalCurrency = '';
 
-      if($(html).find('.notification-project-price:eq(0)').find('.notification-project-price').length > 0) {
-        budgetInLocalCurrency = $(html).find('.notification-project-price:eq(0)').find('.notification-project-price').html().trim();
-      }
-	  
 	  var url = '';
 	  
 	  var innderDiv = $(".SettingsWrapper app-project-item app-feed-item a.ButtonElement div.Content div.Inner:contains('" + title+ "')").eq(0);
@@ -372,6 +424,18 @@ Scrapper.prototype.scrap = function(html) {
 			url = "https://www.freelancer.com" + $(anhor).attr("href");
 		  }
 	  }
+	  
+	  var budgetInUSD = "";
+	  
+	  if($(html).find('.notification-project-price:eq(0)').length > 0) {
+		budgetInUSD = $(html).find('.notification-project-price:eq(0)').contents().eq(0)[0].data.trim();
+	  }
+	  
+	  var budgetInLocalCurrency = '';
+
+      if($(html).find('.notification-project-price:eq(0)').find('.notification-project-price').length > 0) {
+        budgetInLocalCurrency = $(html).find('.notification-project-price:eq(0)').find('.notification-project-price').html().trim();
+      }
 	  
       result = new FreelancerProject({
         title: title,
