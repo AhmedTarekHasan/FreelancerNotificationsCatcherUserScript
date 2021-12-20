@@ -1,41 +1,44 @@
-# Freelancer Notifications Catcher User Script
-Get Freelancer.com Filtered by Skills Projects Notifications on Your Slack Channel
+<link rel="canonical" href="https://javascript.plainenglish.io/how-to-get-freelancers-new-projects-notifications-on-your-slack-channel-69c9c74d3220?sk=8a003a6f0e99382a8732ff9c9d7a2025" />
+
+# Learn How to Develop a JavaScript UserScript to Monitor Freelancer Projects and Post to Slack
+### Using Dependency Injection (DI) and Inversion of Control (IoC)
 
 <p align="center">
-  <img src="https://i.imgur.com/mdflchD.png">
+  <img src="https://miro.medium.com/max/1250/1*-Lpb7E0DGy4aPXHYf7gV4w.jpeg">
 </p>
 
 <br/>
 
-This GreaseMonkey user script watches Freelancer.com projects notifications and sends them to your Slack channel. You can set the skills you are interested in and the script will send you notifications of the projects related to these skills only.
+<p>
+This story is about learning how to develop a UserScript that watches Freelancer.com projects notifications and sends them to your Slack channel. You can set the skills you are interested in and the script will send you notifications of the projects related to these skills only.
+</p>
 
 <br/>
 
-## You just need to modify the values below to your proper ones:
-* Change **lk6f7fd0-277z-12ec-8894-41n9e18q3291** to your own freecurrencyapi.net API Key
-* Change **xoxb-378377152752-2574471671501-pghLJ7MGiZ9KUKI8YzJQdRN2** to your own Slack Bot Key
-* Change **K16GL9SV5B3** to your own Slack channel id
-* Change Freelancer Notifications Catcher to your preferred Slack bot username
-* Change [ "C# Programming", ".NET", "ASP.NET", ... ] to your array of skills. Please note that you should enter skills as they are presented by Freelancer.com
+If you are interested into reading more about this topic, you can read [the rest of the article][Article]. 
 
 <br/>
 
-## Note:
-Due to a problem with Slack API, you might get a CORS error on your browser console leading to a failure in posting projects to Slack. To overcome this problem, you will need to turn off the CORS protection on your web browser. To do so for Chrome, you can create a shortcut to Chrome.exe and modify the target by adding the following parameters:
-**--disable-web-security --user-data-dir="C:\Users\{YourUsername}\AppData\Local\Google\Chrome\User Data\"**
-
-<br/>
-<br/>
-
-Using GreaseMonkey you can perform so many cool things. If you want to know more about GreaseMonkey, you can check [this article](http://developmentsimplyput.blogspot.com/2013/03/having-fun-with-javascript-and.html)
-
-<br/>
-
-## Related Links:
-* [Development Simply Put Blog Post](http://developmentsimplyput.blogspot.com/2013/03/having-fun-with-javascript-and.html)
+## If you want to support me:
+▶ Subscribe to Medium using [my referral link][Membership]<br/>
+▶ Subscribe to [Medium Newsletter][Subscribe]<br/>
+▶ Subscribe to [LinkedIn Newsletter][Newsletter]<br/>
+▶ Follow me on [Medium][Blog]<br/>
+▶ Follow me on [Twitter][Twitter]<br/>
+▶ Follow me on [LinkedIn][LinkedIn]
 
 <br/>
 
 ## Authors:
-* [Ahmed Tarek Hasan](https://linkedin.com/in/atarekhasan)
+* [Ahmed Tarek Hasan]
 
+
+[Ahmed Tarek Hasan]: https://medium.com/@eng_ahmed.tarek
+[Blog]: https://medium.com/@eng_ahmed.tarek
+[Membership]: https://medium.com/@eng_ahmed.tarek/membership
+[Subscribe]: https://medium.com/subscribe/@eng_ahmed.tarek
+[Twitter]: https://twitter.com/AhmedTarekHasa1
+[LinkedIn]: https://www.linkedin.com/in/atarekhasan/
+[Friend Links]: https://www.linkedin.com/feed/update/urn:li:activity:6866082670108143616/
+[Newsletter]: https://www.linkedin.com/newsletters/development-simply-put-6866647119655247872/
+[Article]: https://javascript.plainenglish.io/how-to-get-freelancers-new-projects-notifications-on-your-slack-channel-69c9c74d3220?sk=8a003a6f0e99382a8732ff9c9d7a2025
