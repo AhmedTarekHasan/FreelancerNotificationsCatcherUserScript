@@ -1,10 +1,10 @@
-<link rel="canonical" href="https://javascript.plainenglish.io/how-to-get-freelancers-new-projects-notifications-on-your-slack-channel-69c9c74d3220?sk=8a003a6f0e99382a8732ff9c9d7a2025" />
+<link rel="canonical" href="https://www.developmentsimplyput.com/post/learn-how-to-develop-a-javascript-userscript-to-monitor-freelancer-projects-and-post-to-slack" />
 
 # Learn How to Develop a JavaScript UserScript to Monitor Freelancer Projects and Post to Slack
 ### Using Dependency Injection (DI) and Inversion of Control (IoC)
 
 <p align="center">
-  <img src="https://miro.medium.com/max/1250/1*-Lpb7E0DGy4aPXHYf7gV4w.jpeg">
+  <img src="https://static.wixstatic.com/media/488a99_517951f881384f569574c3cc629aeafc~mv2.png/v1/fill/w_828,h_444,al_c,q_90,enc_auto/488a99_517951f881384f569574c3cc629aeafc~mv2.png">
 </p>
 
 <br/>
@@ -41,4 +41,4 @@ If you are interested into reading more about this topic, you can read [the rest
 [LinkedIn]: https://www.linkedin.com/in/atarekhasan/
 [Friend Links]: https://www.linkedin.com/feed/update/urn:li:activity:6866082670108143616/
 [Newsletter]: https://www.linkedin.com/newsletters/development-simply-put-6866647119655247872/
-[Article]: https://javascript.plainenglish.io/how-to-get-freelancers-new-projects-notifications-on-your-slack-channel-69c9c74d3220?sk=8a003a6f0e99382a8732ff9c9d7a2025
+[Article]: https://www.developmentsimplyput.com/post/learn-how-to-develop-a-javascript-userscript-to-monitor-freelancer-projects-and-post-to-slack
